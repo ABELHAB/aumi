@@ -1,10 +1,333 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Aumi</title>
-  </head>
-  <body>
-    <h1>Welcome to Aumi!</h1>
-    <p>One small step at a time.</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aumi — One small step at a time.</title>
+  <style>
+    :root {
+      --forest-green: #1C3B2B;
+      --sage-green: #5B7065;
+      --soft-mint: #CBE3DB;
+      --warm-cream: #FDFBF7;
+      --card-bg: #FFFFFF;
+      --text-main: #2A332E;
+      --text-muted: #627269;
+      --shadow: 0 10px 25px -5px rgba(28, 59, 43, 0.05);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--warm-cream);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .brand-logo {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--forest-green);
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .brand-tagline {
+      font-size: 1rem;
+      color: var(--sage-green);
+      margin-top: 4px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(203, 227, 219, 0.4);
+      margin-bottom: 24px;
+      transition: all 0.3s ease;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      color: var(--forest-green);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-option {
+      background: var(--warm-cream);
+      border: 1.5px solid var(--soft-mint);
+      border-radius: 14px;
+      padding: 16px 20px;
+      text-align: left;
+      font-size: 1rem;
+      color: var(--text-main);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .btn-option:hover {
+      background: var(--soft-mint);
+      border-color: var(--sage-green);
+      transform: translateY(-1px);
+    }
+
+    .step-display {
+      background-color: var(--warm-cream);
+      border-left: 4px solid var(--sage-green);
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 1.15rem;
+      color: var(--forest-green);
+      font-weight: 500;
+      margin: 20px 0;
+    }
+
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn-primary {
+      background: var(--forest-green);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-align: center;
+    }
+
+    .btn-primary:hover {
+      background: #28523c;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--sage-green);
+      border: 1.5px solid var(--soft-mint);
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn-secondary:hover {
+      background: var(--warm-cream);
+    }
+
+    .safety-notice {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: auto;
+      padding: 20px 0;
+      max-width: 450px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-logo">
+      <span>🌱</span> Aumi
+    </div>
+    <div class="brand-tagline">One small step at a time.</div>
+  </header>
+
+  <main>
+    <!-- Step 1: Energy Check-In -->
+    <div id="screen-energy" class="card">
+      <h2>How much energy do you have right now?</h2>
+      <p class="subtitle">There are no wrong answers. Meet yourself where you are.</p>
+      
+      <div class="options-grid">
+        <button class="btn-option" onclick="selectEnergy('barely')">Barely anything <span>🪫</span></button>
+        <button class="btn-option" onclick="selectEnergy('little')">A little <span>🔋</span></button>
+        <button class="btn-option" onclick="selectEnergy('some')">Some <span>🌿</span></button>
+        <button class="btn-option" onclick="selectEnergy('quite_a_lot')">Quite a lot <span>✨</span></button>
+      </div>
+    </div>
+
+    <!-- Step 2: Focus Area Selection -->
+    <div id="screen-focus" class="card hidden">
+      <h2>What feels manageable to look at?</h2>
+      <p class="subtitle">Pick one area you’d like to gently touch on.</p>
+      
+      <div class="options-grid">
+        <button class="btn-option" onclick="selectFocus('myself')">Myself <span>🤍</span></button>
+        <button class="btn-option" onclick="selectFocus('space')">My space <span>🏡</span></button>
+        <button class="btn-option" onclick="selectFocus('responsibilities')">Responsibilities <span>📋</span></button>
+        <button class="btn-option" onclick="selectFocus('people')">People <span>💬</span></button>
+        <button class="btn-option" onclick="selectFocus('feel_better')">Feel a little better <span>☕</span></button>
+      </div>
+    </div>
+
+    <!-- Step 3: Action Step -->
+    <div id="screen-step" class="card hidden">
+      <h2>Here is your step for now:</h2>
+      <div id="step-text" class="step-display">Loading step...</div>
+
+      <div class="action-group">
+        <button class="btn-primary" onclick="finishStep()">I did it ✨</button>
+        <button class="btn-secondary" onclick="makeSmaller()">Make it smaller 🤏</button>
+        <button class="btn-secondary" onclick="doneForNow()">I'm done for now</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Completion -->
+    <div id="screen-done" class="card hidden" style="text-align: center;">
+      <h2>That counts. 🌿</h2>
+      <p class="subtitle" style="margin-top: 12px;">You listened to your body and did what you could today. That is more than enough.</p>
+      
+      <div class="action-group" style="margin-top: 30px;">
+        <button class="btn-primary" onclick="resetFlow()">Start over when ready</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="safety-notice">
+    Aumi is a gentle companion for low-energy moments, not a clinical or crisis service. If you are in distress or need immediate help, please reach out to local healthcare professionals or a support helpline.
+  </footer>
+
+  <script>
+    // Task database organized by energy and category
+    const tasks = {
+      barely: {
+        myself: ["Take three calm, slow breaths.", "Drink one sip of water.", "Close your eyes for 60 seconds."],
+        space: ["Look out a window for a moment.", "Adjust your pillow or blanket so you are cozy.", "Move one item off your bed or couch."],
+        responsibilities: ["Acknowledge one thing you don't have to do today.", "Put your phone down for two minutes.", "Think of one tiny task and defer it to tomorrow without guilt."],
+        people: ["Send a single heart emoji to someone you trust.", "Read a pleasant text message you received recently.", "Remind yourself that it's okay to reply later."],
+        feel_better: ["Unclench your jaw and drop your shoulders.", "Place a warm hand over your chest.", "Listen to one comforting song."]
+      },
+      little: {
+        myself: ["Wash your hands with warm water.", "Eat a small bite of food or snack.", "Stretch your arms gently above your head."],
+        space: ["Pick up one piece of trash near you.", "Open a window shade to let in light.", "Clear off a small square space on your desk or counter."],
+        responsibilities: ["Open one email or message (you don't have to reply yet).", "Write down one item on a piece of paper.", "Check one tiny thing off your mental list."],
+        people: ["Send a short text saying 'Thinking of you'.", "Reply with a quick 'Thank you' to an open message.", "Step into another room if you need quiet."],
+        feel_better: ["Make a warm cup of tea or glass of cold water.", "Step outside or near a open door for fresh air.", "Wash your face with cold water."]
+      },
+      some: {
+        myself: ["Change into fresh clothes.", "Brush your teeth.", "Eat a nourishing meal or hearty snack."],
+        space: ["Tidy five small items and put them in their homes.", "Wipe down one surface.", "Make your bed gently."],
+        responsibilities: ["Spend 5 minutes addressing one item on your list.", "Draft a quick reply to an urgent message.", "Organize your desk or workspace for 3 minutes."],
+        people: ["Check in on a friend with a brief message.", "Have a quick text conversation with someone safe.", "Express a small thank-you to someone nearby."],
+        feel_better: ["Go for a short 5-minute walk.", "Do 2 minutes of gentle full-body stretching.", "Write down three small things that feel ok right now."]
+      },
+      quite_a_lot: {
+        myself: ["Take a refreshing shower.", "Prepare a nice meal for yourself.", "Do a 10-minute movement or exercise session."],
+        space: ["Clean one whole area (like the kitchen sink or coffee table).", "Take out the trash.", "Water your plants or care for your space."],
+        responsibilities: ["Spend 15 focused minutes on your top priority.", "Clear out 5 unread emails.", "Plan out your main goal for tomorrow."],
+        people: ["Call a friend or family member for a short chat.", "Make plans to catch up with someone this week.", "Do a kind gesture for someone in your household."],
+        feel_better: ["Spend 15 minutes enjoying a favorite hobby.", "Go on a 15-minute outdoor walk.", "Journal your thoughts for 5 minutes."]
+      }
+    };
+
+    let selectedEnergy = '';
+    let selectedFocus = '';
+    let currentTaskIndex = 0;
+
+    function selectEnergy(energy) {
+      selectedEnergy = energy;
+      document.getElementById('screen-energy').classList.add('hidden');
+      document.getElementById('screen-focus').classList.remove('hidden');
+    }
+
+    function selectFocus(focus) {
+      selectedFocus = focus;
+      currentTaskIndex = 0;
+      updateTaskDisplay();
+      document.getElementById('screen-focus').classList.add('hidden');
+      document.getElementById('screen-step').classList.remove('hidden');
+    }
+
+    function updateTaskDisplay() {
+      const taskList = tasks[selectedEnergy][selectedFocus];
+      document.getElementById('step-text').innerText = taskList[currentTaskIndex];
+    }
+
+    function makeSmaller() {
+      const taskList = tasks[selectedEnergy][selectedFocus];
+      if (currentTaskIndex < taskList.length - 1) {
+        currentTaskIndex++;
+      } else {
+        // If we run out of smaller tasks in this tier, default to the easiest tier
+        document.getElementById('step-text').innerText = "Take one slow breath in... and let it out.";
+        return;
+      }
+      updateTaskDisplay();
+    }
+
+    function finishStep() {
+      document.getElementById('screen-step').classList.add('hidden');
+      document.getElementById('screen-done').classList.remove('hidden');
+    }
+
+    function doneForNow() {
+      document.getElementById('screen-step').classList.add('hidden');
+      document.getElementById('screen-done').classList.remove('hidden');
+    }
+
+    function resetFlow() {
+      selectedEnergy = '';
+      selectedFocus = '';
+      currentTaskIndex = 0;
+      document.getElementById('screen-done').classList.add('hidden');
+      document.getElementById('screen-energy').classList.remove('hidden');
+    }
+  </script>
+</body>
 </html>
